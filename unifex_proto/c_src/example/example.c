@@ -1,4 +1,7 @@
 #include "example.h"
+#include "test.h"
+
+
 
 int handle_load(UnifexEnv * env, void ** priv_data) {
   UNIFEX_UNUSED(env);
@@ -15,6 +18,15 @@ UNIFEX_TERM init(UnifexEnv* env) {
   return res;
 }
 
+UNIFEX_TERM add(UnifexEnv* env,int num1,int num2) {
+  int answer = 0;
+  answer = add_native(num1,num2);
+  return add_result_ok(env,answer);
+}
+UNIFEX_TERM greeting(UnifexEnv* env){
+  greeting_native();
+  return greeting_result_ok(env);
+}
 UNIFEX_TERM foo(UnifexEnv* env, UnifexPid pid, State* state) {
   int res = send_example_msg(env, pid, 0, state->a);
   if (!res) {
