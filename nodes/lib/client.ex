@@ -1,8 +1,9 @@
 defmodule Client do
   
   def start do
+    #クライアントプロセスを生成
     pid = spawn(__MODULE__,:receiver,[])
-    #クライアントプロセスのpidをサーバに登録する
+    #作ったクライアントプロセスのpidをサーバに登録する
     Ticker.register(pid)
   end
 
